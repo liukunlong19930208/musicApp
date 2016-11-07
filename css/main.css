@@ -247,7 +247,7 @@ body {
 	top:10.9rem;
 }
 #progress{
-	  width:6.0rem;
+	  width:5.8rem;
 	  height:0.03rem;
 	  background:#fff;
 	  position:absolute;
@@ -353,13 +353,13 @@ li{
 	
 }
 .delete{
-		width:0.2rem;
-		height:0.2rem;
-		border-radius: 50%;
-		background: red;
 		position: absolute;
 		right:0.33rem;
 		top:0.36rem;
+	}
+	.iconfont11{
+		font-family:"iconfont";
+		color:#fff;
 	}
 .me{
 	position:absolute;
@@ -379,4 +379,55 @@ li{
 #audio{
 	position:absolute;
 	bottom:0;
+}
+.box{
+	width:100%;
+	height:5.64rem;
+	background:#405364;
+	position:absolute;
+	bottom:-2.2rem;
+	z-index:10;
+	display:none;
+}
+.box .close{
+	 width:100%;
+	 height:0.9rem;
+	 color:#fff;
+	 font-size:16px;
+	 position:absolute;
+	 bottom:0;
+	 text-align:center;
+	 border-top:1px solid #58707a;
+	 line-height:0.9rem;
+}
+.box .box1{
+	width:100%;
+	height:0.9rem;
+	background:#3f5365;
+	border-bottom:1px solid #58707a;
+	position:relative;
+}
+#volume{
+	width:4.92rem;
+	height:0.04rem;
+	background:#556676;
+	position:absolute;
+	top:0.42rem;
+	left:1.08rem;
+}
+#v-i{
+	width:.4rem;
+  height:.4rem;
+  position:absolute;
+  right:-0.15rem;
+  top:-0.2rem;
+  background:#fff;
+  border-radius:50%;
+}
+.iconfont12{
+	font-family:"iconfont";
+	color:#fff;
+	font-size:30px;
+	position:absolute;
+	left:0.3rem;
 }

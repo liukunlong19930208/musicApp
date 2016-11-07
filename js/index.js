@@ -5,6 +5,9 @@ $(function(){
 		var duration=$("#duration");
 		var current=$("#current-time");
 		var pi=$("#p-i");
+		var volume=$("#volume");
+		var vi=$("#v-i");
+		var mute=$("#mute");
 // 修改事件方式
 		function format(v){
 			v=Math.floor(v);
@@ -46,26 +49,63 @@ $(function(){
 			pi.css("left",left);
 		})
 	// pi滚动
-		pi.on("touchstart",function(e){
-			var offsetX=e.originalEvent.changedTouches[0].clientX-pi.offset().left;
-			var r=pi.width()/2;
-			var start=r-offsetX;
-			$(document).on("touchmove",function(e){
-				var left=e.clientX-progress.position().left+start;
-				var c=left/progress.width()*audio.duration;
-				if (c>=audio.duration||c<=0) {
-						return ;
-				}
-				audio.currentTime=c;
-			})
-			return false;
+	    pi.on("touchend", false);
+		pi.on("touchstart", function(e) {
+			var r = $(this).width() / 2;
+		var offsetX = e.originalEvent.changedTouches[0].clientX - pi.offset().left;
+		var start = r - offsetX;
+		$(document).on("touchmove", function(e) {
+			var m = e.originalEvent.changedTouches[0].clientX;
+			var left = m - progress.position().left+start;
+			var c = left / progress.width() * audio.duration;
+			if (c >= audio.duration||c<=0) {
+				return;
+			}
+			audio.currentTime = c;
 		})
+		return false;
+	})
 		$(document).on("touchend",function(){
 			$(document).off("touchmove");
 		})
-	
-	
-	
+	// 调节音量
+		volume.on("touchend", function(e) {
+		var offsetX = e.originalEvent.changedTouches[0].clientX - vi.offset().left;
+		audio.volume = offsetX / $(this).width();
+	})
+	// 音量事件驱动
+		$(audio).on("volumechange",function(){
+			vi.css("left",volume.width()*audio.volume-vi.width()/2)
+		})
+	//调节音量
+	vi.on("touchend", false);
+	vi.on("touchstart", function(e) {
+		var r = $(this).width() / 2;
+		var offsetX = e.originalEvent.changedTouches[0].clientX - vi.offset().left;
+		var start = r - offsetX;
+		$(document).on("touchmove", function(e) {
+			var m = e.originalEvent.changedTouches[0].clientX;
+			var left = m - volume.position().left + start;
+			if ((left / volume.width() > 0) && (left / volume.width() < 1)) {
+				audio.volume = left / volume.width();
+			}
+
+		})
+		return false;
+	})
+	$(document).on("touchend", function() {
+		$(document).off("touchmove");
+	})
+	// 静音
+		mute.on("touchstart",function(){
+			if($(this).attr("data-v")){
+				audio.volume=$(this).attr("data-v");
+				$(this).removeAttr("data-v");
+			}else{
+				$(this).attr("data-v",audio.volume);
+				audio.volume=0;
+			}
+		})
 	// 添加歌曲
 	var currentIndex=0;
 	var musics=[
@@ -107,7 +147,7 @@ $(function(){
     	ul.empty();
     	$.each(musics,function(index,val){
     		var c=(index==currentIndex)? "active":"";
-    			$("<li class='"+c+"'><span class='me'>"+musics[index].name+"</span><span class='me1'>"+musics[index].author+"</span><div class='delete'></div></li>").appendTo(ul);
+    			$("<li class='"+c+"'><span class='me'>"+musics[index].name+"</span><span class='me1'>"+musics[index].author+"</span><div class='delete iconfont11'>&#xe659;</div></li>").appendTo(ul);
     	})
     }  
     
@@ -192,6 +232,11 @@ $(".nav").on("touchstart",function(){
 		
 	})
 	
-	
+	$(".dian").on("touchstart",function(){
+	$(".box").slideToggle();
+})
+	$(".close").on("touchstart",function(){
+		$(".box").css("display","none");
+	})
 	
 })

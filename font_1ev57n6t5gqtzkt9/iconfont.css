@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1478249247411'); /* IE9*/
-  src: url('iconfont.eot?t=1478249247411#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1478249247411') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1478249247411') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1478249247411#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1478533052317'); /* IE9*/
+  src: url('iconfont.eot?t=1478533052317#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1478533052317') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1478533052317') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1478533052317#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -15,6 +15,8 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-yinliang:before { content: "\e60a"; }
 
 .icon-ttpodicon:before { content: "\e639"; }
 
@@ -27,6 +29,8 @@
 .icon-fenxiang:before { content: "\e631"; }
 
 .icon-xiayishou:before { content: "\e627"; }
+
+.icon-shanchu:before { content: "\e659"; }
 
 .icon-daohang:before { content: "\e62e"; }
 
