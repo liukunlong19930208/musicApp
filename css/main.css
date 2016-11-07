@@ -342,6 +342,7 @@ body {
 	bottom:-0.25rem;
 	right:0.3rem;
 	display:none;
+	overflow: hidden;
 }
 .active{
  background:#576b7b;
@@ -351,7 +352,15 @@ li{
 	position:relative;
 	
 }
-
+.delete{
+		width:0.2rem;
+		height:0.2rem;
+		border-radius: 50%;
+		background: red;
+		position: absolute;
+		right:0.33rem;
+		top:0.36rem;
+	}
 .me{
 	position:absolute;
 	top:0.28rem;

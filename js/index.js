@@ -70,25 +70,35 @@ $(function(){
 	var currentIndex=0;
 	var musics=[
 		{
-			name:"我是我的",
-			author:"李玟",
-			src:"./music/2.mp3",
-			duration:"4:30"
+			name:"和你在一起",
+			author:"乔任梁",
+			src:"./music/乔任梁 (Kimi Qiao) - 和你在一起.mp3",
+			
 		},
 		{
-			name:"我是我的",
-			author:"陈学冬",
-			src:"./music/a.mp3"
+			name:"认真的雪",
+			author:"薛之谦",
+			src:"./music/薛之谦 - 认真的雪 (《妈妈像花儿一样》电视剧插曲).mp3"
 		},
 		{
-			name:"我是我的",
+			name:"妈咪妈咪",
 			author:"王绎龙",
 			src:"./music/王绎龙 (DJ Sunny) - 妈咪妈咪.mp3"
 		},
 		{
-			name:"我是我的",
+			name:"热雪",
 			author:"魏晨",
 			src:"./music/魏晨 (Vision Wei) - 热雪 (Live).mp3"
+		},
+		{
+			name:"意外",
+			author:"薛之谦",
+			src:"./music/薛之谦 - 意外 (《如果我爱你》电视剧插曲).mp3"
+		},
+		{
+			name:"她说",
+			author:"张碧晨",
+			src:"./music/张碧晨 - 她说 (Live).mp3"
 		}
 	]
 //定义函数
@@ -97,7 +107,7 @@ $(function(){
     	ul.empty();
     	$.each(musics,function(index,val){
     		var c=(index==currentIndex)? "active":"";
-    			$("<li class='"+c+"'><span class='me'>"+musics[index].name+"</span><span class='me1'>"+musics[index].author+"</span></li>").appendTo(ul);
+    			$("<li class='"+c+"'><span class='me'>"+musics[index].name+"</span><span class='me1'>"+musics[index].author+"</span><div class='delete'></div></li>").appendTo(ul);
     	})
     }  
     
@@ -125,10 +135,63 @@ $(function(){
    		audio.play();
     }
     pre.on("touchstart",prev);
-    next.on("touchend",nextf);	
+    next.on("touchend",nextf);
+    
+    
+  //点击哪首播放哪首
+  render();
+	ul.on("touchstart","li",function(){
+    	$("li").removeClass("active");
+    	$(this).addClass("active");
+    	currentIndex=$(this).index();
+    	audio.src=musics[currentIndex].src;
+    	audio.play();
+    	
+    })
+	
+	//列表删除 一定不要冒泡
+	ul.on("touchstart",".delete",function(){
+		var aa=$(this).closest("li");
+		var index=aa.index();
+		musics.splice(index,1);
+		if(index==currentIndex){
+			if(musics[currentIndex]){
+				audio.src=musics[currentIndex].src;
+			}
+			else{
+				audio.src="";
+				currentIndex=0;
+			}
+		}
+		else if(index>currentIndex){
+				
+			}
+		else if(index<currentIndex){
+			currentIndex-=1;
+		}
+		render();
+		return false;
+		
+	})
 //点击菜单栏
 $(".nav").on("touchstart",function(){
 	$(".menu").slideToggle();
 })
+	
+	//audio函数
+	$(audio).on("canplay",function(){
+		$("li").removeClass("active");
+		$("li").eq(currentIndex).addClass("active");
+//		$(".text span").html(musics[currentIndex].name);
+		audio.play();
+	})
+	$(audio).on("ended",function(){
+		nextf();
+	})
+	$(audio).on("loadstart",function(){
+		
+	})
+	
+	
 	
 })
