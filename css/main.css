@@ -379,6 +379,7 @@ li{
 #audio{
 	position:absolute;
 	bottom:0;
+	display:none;
 }
 .box{
 	width:100%;
