@@ -369,7 +369,7 @@ body {
 	bottom:-0.25rem;
 	right:0.3rem;
 	display:none;
-	overflow: hidden;
+	overflow:scroll;
 }
 .active{
  background:#576b7b;
